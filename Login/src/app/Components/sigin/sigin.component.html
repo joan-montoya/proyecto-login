@@ -1,0 +1,28 @@
+<!-- Define que el documento esta bajo el estandar de HTML 5 -->
+<!doctype html>
+
+<!-- Representa la raíz de un documento HTML o XHTML. Todos los demás elementos deben ser descendientes de este elemento. -->
+<html lang="es">
+    
+  
+    <body>
+        
+        <div id="contenedor">
+            <div id="central">
+                <div id="login">
+                    <div class="titulo">
+                        Registro
+                    </div>
+                    <form id="loginform">
+                        <input [(ngModel)]="Usuario.nombre" type="text" name="nombre" placeholder="Nombre" required>
+                        <input [(ngModel)]="Usuario.apellidos"type="text" name="apellido" placeholder="Apellido" required>          
+                        <input [(ngModel)]="Usuario.password" type="password" placeholder="Contraseña" name="password" required>
+                        <input [(ngModel)]="Usuario.email" type="email" placeholder="Email" name="email" required>
+                        <button  type="submit" (click)="registrarUsuario()" title="Ingresar" name="Ingresar">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+    </body>
+</html>
