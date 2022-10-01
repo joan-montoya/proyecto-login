@@ -31,12 +31,8 @@ app.get('/',function(req, res){
 });
 
 app.use(require('./routes/usuario'));
-app.use(require('./routes/categoria'));
-app.use(require('./routes/viaje'));
-app.use(require('./routes/alerta'));
-app.use(require('./routes/login'));
+app.use(require('./routes/email'));
 app.use(require('./routes/administrador'));
-app.use(require('./routes/conductor'));
 
  mongoose.connect('mongodb+srv://admin:3526@cluster0.4pvv9.mongodb.net/Dwin',{
       useNewUrlParser: true,

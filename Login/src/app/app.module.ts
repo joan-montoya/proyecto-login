@@ -7,12 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './Components/login/login.component';
 import { SiginComponent } from './Components/sigin/sigin.component';
 import { FormsModule } from '@angular/forms';
+import { ConfirmComponent } from './Components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SiginComponent
+    SiginComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
