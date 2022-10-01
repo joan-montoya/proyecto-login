@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 })
 export class SiginComponent implements OnInit {
   correo = "";
+  contrase = "";
   Usuario = {
     nombre: "",
     password: "",
@@ -26,7 +27,8 @@ export class SiginComponent implements OnInit {
 
   constructor(public UsuariosService: UsuariosService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.obtenerUsuarios();
   }
 
   Mostrar(){
@@ -34,23 +36,61 @@ export class SiginComponent implements OnInit {
   }
 
   registrarUsuario(){
-    localStorage.setItem("nom", this.Usuario.nombre);
-    localStorage.setItem("app", this.Usuario.apellidos);
-    localStorage.setItem("em", this.Usuario.email);
-    localStorage.setItem("pass", this.Usuario.password);
-    this.Usuario1.email = this.Usuario.email;
-    this.UsuariosService.registrarEmail(this.Usuario1).then((data: any) =>{
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Registro Exitoso',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }).catch((err) =>{
-      //console.log(err);
-        })
-        
-  }
+    if(this.Usuario.password == this.contrase){
+      for(let x = 0; x < this.usuarios.length; x++){
+        if(this.Usuario.email == this.usuarios[x].email ){
+          console.log("si")
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Este Correo ya esta en uso',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          break;
+         
+        }else{
+          localStorage.setItem("nom", this.Usuario.nombre);
+          localStorage.setItem("app", this.Usuario.apellidos);
+          localStorage.setItem("em", this.Usuario.email);
+          localStorage.setItem("pass", this.Usuario.password);
 
+          this.Usuario1.email = this.Usuario.email;
+          this.UsuariosService.registrarEmail(this.Usuario1).then((data: any) =>{
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Registro Completo',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }).catch((err) =>{
+                //console.log(err);
+                  })
+        }
+      }
+
+          
+        }else{
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Las Contraseñas no coinciden',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+
+    }
+
+    obtenerUsuarios() {
+      this.UsuariosService.obtenerUsuarios().then((data: any) =>{
+        console.log(data.usuarios);
+        this.usuarios=data.usuarios;
+      }).catch((err) =>{
+        console.log(err);
+      })
+      console.log(this.usuarios);
+    }
+    
 }

@@ -89,7 +89,8 @@ var nodemailer = require('nodemailer');
             from: "Aplicacion Login de joan",
             to: usrDB.email,
             subject: "Registro exitoso",
-            text: "confirmacion http://localhost:4200/conf",
+            text: "confirmacion",
+            html: "<a  href='http://localhost:4200/conf'>Clic aqui para confirmar</a></li>",
           }
            transporter.sendMail(mailOptions, (error, info) =>{
             if(error) {
