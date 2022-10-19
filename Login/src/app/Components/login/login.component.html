@@ -16,7 +16,8 @@
                     <form id="loginform">
                         <input [(ngModel)]="Usuario.email" type="text" name="usuario" placeholder="Correo electronico" required>
                         
-                        <input [(ngModel)]="Usuario.password" type="password" placeholder="Contraseña" name="password" required>
+                        <input [(ngModel)]="Usuario.password" type="password" 
+                        placeholder="Contraseña" name="password" minlength="8">
                         
                         <button type="submit" (click)="log()" title="Ingresar" name="Ingresar">Login</button>
                     </form>
